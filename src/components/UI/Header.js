@@ -10,7 +10,7 @@ function Header() {
             <NavLink
               className={classes.navlink}
               activeClassName="active"
-              to="all-quotes"
+              to="/all-quotes"
             >
               All Quotes
             </NavLink>
