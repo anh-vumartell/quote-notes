@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams, Route } from "react-router-dom";
-import HighlightedQuote from "./HighlightedQuote";
-import NoQuotesFound from "./NoQuotesFound";
+import HighlightedQuote from "../quotes/HighlightedQuote";
+import NoQuotesFound from "../quotes/NoQuotesFound";
 import Comments from "../comments/Comments";
 const DUMMY_QUOTES = [
   {

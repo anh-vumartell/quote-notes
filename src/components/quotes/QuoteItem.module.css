@@ -4,9 +4,9 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 7px 6px #201e1e7c;
   border-radius: 6px;
-  background-color: #c2e7f0;
+  background-color: #a1a7a7;
 }
 
 .item:last-of-type {
@@ -23,7 +23,7 @@
   margin: 0;
   text-align: left;
   font-size: 1.5rem;
-  color: #212929;
+  color: #181d1d;
 }
 
 .item p {
@@ -33,5 +33,5 @@
 
 .item figcaption {
   font-style: italic;
-  color: #566d6d;
+  color: #3a4242;
 }

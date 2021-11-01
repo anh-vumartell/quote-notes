@@ -2,9 +2,10 @@ import { useState } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import Layout from "./components/layout/Layout";
-import QuoteForm from "./components/quotes/QuoteForm";
-import QuoteList from "./components/quotes/QuoteList";
-import QuoteDetail from "./components/quotes/QuoteDetail";
+import QuoteDetail from "./components/pages/QuoteDetail";
+import NotFound from "./components/pages/NotFound";
+import AllQuotes from "./components/pages/AllQuotes";
+import NewQuote from "./components/pages/NewQuote";
 const DUMMY_QUOTES = [
   {
     author: "Ngoc Anh",
@@ -25,7 +26,6 @@ function App() {
     //update state of quotes
     setQuotes([...quotes, quote]);
   };
-
   return (
     <Router>
       <Layout>
@@ -34,14 +34,17 @@ function App() {
             <Redirect to="/all-quotes" />
           </Route>
           <Route path="/all-quotes" exact>
-            <QuoteList quotes={quotes} />
+            <AllQuotes quotes={quotes} />
           </Route>
           <Route path="/all-quotes/:quoteId">
             <QuoteDetail />
           </Route>
           <Route path="/add-a-quote">
             <h1>Add your own quotes</h1>
-            <QuoteForm onAddQuote={quotesHandler} />
+            <NewQuote onAddQuote={quotesHandler} />
+          </Route>
+          <Route path="*">
+            <NotFound />
           </Route>
         </Switch>
       </Layout>
