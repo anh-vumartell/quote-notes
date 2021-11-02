@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
+
 import { BrowserRouter as Router } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import QuoteDetail from "./components/pages/QuoteDetail";
@@ -21,7 +22,6 @@ const DUMMY_QUOTES = [
 function App() {
   //Set up state slices
   const [quotes, setQuotes] = useState(DUMMY_QUOTES);
-
   const quotesHandler = (quote) => {
     //update state of quotes
     setQuotes([...quotes, quote]);

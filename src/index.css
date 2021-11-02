@@ -60,3 +60,7 @@ body {
   background-color: teal;
   color: white;
 }
+
+.error-text {
+  color: red;
+}

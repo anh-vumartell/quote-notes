@@ -1,50 +1,128 @@
-import { useRef } from "react";
-
+import { Fragment, useState } from "react";
+import { Prompt, useHistory } from "react-router-dom";
+import useInput from "../hooks/use-input";
 import Card from "../UI/Card";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import classes from "./QuoteForm.module.css";
 
 const QuoteForm = (props) => {
-  const authorInputRef = useRef();
-  const textInputRef = useRef();
+  const history = useHistory();
+  // const authorInputRef = useRef();
+  // const textInputRef = useRef();
+  const [isEntering, setIsEntering] = useState(false);
+
+  //Using useInput hook here
+  const {
+    value: enteredAuthor,
+    valueIsValid: authorNameIsValid,
+    hasError: authorNameHasError,
+    inputChangeHandler: authorNameChangeHandler,
+    inputBlurHandler: authorNameBlurHandler,
+    inputReset: authorNameReset,
+  } = useInput((value) => value.trim() !== "");
+
+  const {
+    value: enteredText,
+    valueIsValid: textIsValid,
+    hasError: textHasError,
+    inputChangeHandler: textChangeHandler,
+    inputBlurHandler: textBlurHandler,
+    inputReset: textReset,
+  } = useInput((value) => value.trim() !== "");
+
+  //derived state of form
+  let formIsValid = false;
+  if (authorNameIsValid && textIsValid) {
+    formIsValid = true;
+  }
 
   function submitFormHandler(event) {
     event.preventDefault();
 
-    const enteredAuthor = authorInputRef.current.value;
-    const enteredText = textInputRef.current.value;
+    // const enteredAuthor = authorInputRef.current.value;
+    // const enteredText = textInputRef.current.value;
 
-    // optional: Could validate here
+    //not submitting if form is not valid
+    if (!formIsValid) {
+      return;
+    }
+
+    //Reset all inputs upon submission
+    authorNameReset();
+    textReset();
 
     props.onAddQuote({
       author: enteredAuthor,
       text: enteredText,
       id: Math.floor(Math.random() * 100 + 1),
     });
+    /*hisotry.push("name-of-path-to-return") so we can come back
+    history.replace("name-of-path") is like a redirec, not coming back*/
+    history.push("/all-quotes");
   }
-
+  /*this function is created outside the form submission function
+  since the submitFormHandler also triggered navigation so the setIsEntering cannot be done (it's
+  too late to update the isEntering state*/
+  const formFocusedHandler = () => {
+    setIsEntering(true);
+  };
+  const finnishEnteringHandler = () => {
+    setIsEntering(false);
+  };
   return (
-    <Card>
-      <form className={classes.form} onSubmit={submitFormHandler}>
-        {props.isLoading && (
-          <div className={classes.loading}>
-            <LoadingSpinner />
-          </div>
-        )}
+    <Fragment>
+      <Prompt
+        when={isEntering}
+        message={(location) =>
+          "Are you sure you want to leave? All entered data will be lost!"
+        }
+      />
+      <Card>
+        <form
+          onFocus={formFocusedHandler}
+          className={classes.form}
+          onSubmit={submitFormHandler}
+        >
+          {props.isLoading && (
+            <div className={classes.loading}>
+              <LoadingSpinner />
+            </div>
+          )}
 
-        <div className={classes.control}>
-          <label htmlFor="author">Author</label>
-          <input type="text" id="author" ref={authorInputRef} />
-        </div>
-        <div className={classes.control}>
-          <label htmlFor="text">Text</label>
-          <textarea id="text" rows="5" ref={textInputRef}></textarea>
-        </div>
-        <div className={classes.actions}>
-          <button className="btn">Add Quote</button>
-        </div>
-      </form>
-    </Card>
+          <div className={classes.control}>
+            <label htmlFor="author">Author</label>
+            <input
+              type="text"
+              id="author"
+              value={enteredAuthor}
+              onChange={authorNameChangeHandler}
+              onBlur={authorNameBlurHandler}
+            />
+            {authorNameHasError && (
+              <p className="error-text">Must enter author name!</p>
+            )}
+          </div>
+          <div className={classes.control}>
+            <label htmlFor="text">Text</label>
+            <textarea
+              id="text"
+              rows="5"
+              value={enteredText}
+              onChange={textChangeHandler}
+              onBlur={textBlurHandler}
+            ></textarea>
+            {textHasError && (
+              <p className="error-text">Must enter quote here!</p>
+            )}
+          </div>
+          <div className={classes.actions}>
+            <button onClick={finnishEnteringHandler} className="btn">
+              Add Quote
+            </button>
+          </div>
+        </form>
+      </Card>
+    </Fragment>
   );
 };
 
