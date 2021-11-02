@@ -13,7 +13,8 @@ function App() {
   //Set up state slices
   const [quotes, setQuotes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const fetchQuotesHandler = useCallback(async (quote) => {
+
+  const fetchQuotesHandler = useCallback(async () => {
     try {
       setIsLoading(true);
       const response = await fetch(

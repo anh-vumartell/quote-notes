@@ -35,8 +35,28 @@ const QuoteForm = (props) => {
   if (authorNameIsValid && textIsValid) {
     formIsValid = true;
   }
-
-  function submitFormHandler(event) {
+  //Function to send quote data to database
+  const sendQuoteHandler = async (quoteData) => {
+    try {
+      const response = await fetch(
+        "https://quote-notes-default-rtdb.europe-west1.firebasedatabase.app/quotes.json",
+        {
+          method: "POST",
+          body: JSON.stringify(quoteData),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  //Form submission handler
+  const submitFormHandler = (event) => {
     event.preventDefault();
 
     // const enteredAuthor = authorInputRef.current.value;
@@ -50,16 +70,19 @@ const QuoteForm = (props) => {
     //Reset all inputs upon submission
     authorNameReset();
     textReset();
-
-    props.onAddQuote({
+    const quoteData = {
       author: enteredAuthor,
       text: enteredText,
       id: Math.floor(Math.random() * 100 + 1),
-    });
+    };
+    props.onAddQuote(quoteData);
     /*hisotry.push("name-of-path-to-return") so we can come back
     history.replace("name-of-path") is like a redirec, not coming back*/
     history.push("/all-quotes");
-  }
+
+    //sending new quote to database
+    sendQuoteHandler(quoteData);
+  };
   /*this function is created outside the form submission function
   since the submitFormHandler also triggered navigation so the setIsEntering cannot be done (it's
   too late to update the isEntering state*/
