@@ -5,9 +5,9 @@ const QuoteItem = (props) => {
     <li className={classes.item}>
       <figure>
         <blockquote>
-          <p>{props.text}</p>
+          <p>"{props.text}"</p>
         </blockquote>
-        <figcaption>{props.author}</figcaption>
+        <figcaption>by {props.author}</figcaption>
       </figure>
       <Link to={`/all-quotes/${props.id}`} className="btn">
         View Fullscreen

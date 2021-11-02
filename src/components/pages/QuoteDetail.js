@@ -5,13 +5,13 @@ import NoQuotesFound from "../quotes/NoQuotesFound";
 import Comments from "../comments/Comments";
 const DUMMY_QUOTES = [
   {
-    author: "Ngoc Anh",
-    text: "Reading is another way to broaden your horizon.",
+    author: "Elbert Hubbard",
+    text: "The greatest mistake you can make in life is to be continually fearing you will make one.",
     id: 1,
   },
   {
-    author: "Conny Martell",
-    text: "Believing in yourself is 50% of success.",
+    author: "Albert Einstein",
+    text: "Life is like riding a bicycle. To keep your balance you must keep moving.",
     id: 2,
   },
 ];
