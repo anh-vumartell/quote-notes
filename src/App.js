@@ -6,7 +6,7 @@ import Layout from "./components/layout/Layout";
 import QuoteDetail from "./components/pages/QuoteDetail";
 import NotFound from "./components/pages/NotFound";
 import AllQuotes from "./components/pages/AllQuotes";
-import NewQuote from "./components/pages/NewQuote";
+import QuoteForm from "./components/quotes/QuoteForm";
 import LoadingSpinner from "./components/UI/LoadingSpinner";
 
 function App() {
@@ -49,7 +49,11 @@ function App() {
     setQuotes([...quotes, quote]);
   };
   return (
-    <Router>
+    <Router
+      getUserConfirmation={() => {
+        /*an empty callback to block the default browser prompt */
+      }}
+    >
       <Layout>
         <Switch>
           <Route path="/" exact>
@@ -60,11 +64,11 @@ function App() {
             <AllQuotes quotes={quotes} />
           </Route>
           <Route path="/all-quotes/:quoteId">
-            <QuoteDetail />
+            <QuoteDetail quotes={quotes} />
           </Route>
           <Route path="/add-a-quote">
             <h1>Add your own quotes</h1>
-            <NewQuote onAddQuote={addQuoteHandler} />
+            <QuoteForm isLoading={isLoading} onAddQuote={addQuoteHandler} />
           </Route>
           <Route path="*">
             <NotFound />

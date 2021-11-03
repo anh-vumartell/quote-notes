@@ -47,7 +47,7 @@ body {
 .btn--flat {
   cursor: pointer;
   font: inherit;
-  color: teal;
+  color: var(--primary-color);
   border: none;
   background-color: none;
   text-decoration: none;
@@ -57,7 +57,7 @@ body {
 
 .btn--flat:hover,
 .btn--flat:active {
-  background-color: teal;
+  background-color: var(--primary-color);
   color: white;
 }
 

@@ -1,8 +1,9 @@
 import { Fragment, useState } from "react";
-import { Prompt, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import useInput from "../hooks/use-input";
 import Card from "../UI/Card";
 import LoadingSpinner from "../UI/LoadingSpinner";
+import RouterPrompt from "../UI/RouterPrompt";
 import classes from "./QuoteForm.module.css";
 
 const QuoteForm = (props) => {
@@ -70,6 +71,7 @@ const QuoteForm = (props) => {
     //Reset all inputs upon submission
     authorNameReset();
     textReset();
+
     const quoteData = {
       author: enteredAuthor,
       text: enteredText,
@@ -77,7 +79,7 @@ const QuoteForm = (props) => {
     };
     props.onAddQuote(quoteData);
     /*hisotry.push("name-of-path-to-return") so we can come back
-    history.replace("name-of-path") is like a redirec, not coming back*/
+    history.replace("name-of-path") is like a redirect, not coming back*/
     history.push("/all-quotes");
 
     //sending new quote to database
@@ -90,15 +92,19 @@ const QuoteForm = (props) => {
     setIsEntering(true);
   };
   const finnishEnteringHandler = () => {
+    //not blockinh page navigation
     setIsEntering(false);
   };
+
   return (
     <Fragment>
-      <Prompt
+      <RouterPrompt
         when={isEntering}
-        message={(location) =>
-          "Are you sure you want to leave? All entered data will be lost!"
-        }
+        title="Leave this page"
+        cancelText="Cancel"
+        okText="Confirm"
+        onOk={() => true}
+        onCancel={() => false}
       />
       <Card>
         <form
