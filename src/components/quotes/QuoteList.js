@@ -29,7 +29,7 @@ const QuoteList = (props) => {
 
   const isSortingAscending = queryParam.get("sort") === "asc";
 
-  const [refreshQuotes, setRefreshedQuotes] = useState(
+  const [refreshedQuotes, setRefreshedQuotes] = useState(
     sortQuotes(props.quotes, isSortingAscending)
   );
   // //sorted quotes
@@ -48,7 +48,7 @@ const QuoteList = (props) => {
     //use database reference to update
     set(ref(database, `quotes/${id}`), null);
     //update the UI
-    setRefreshedQuotes(refreshQuotes.filter((quote) => quote.id !== id));
+    setRefreshedQuotes(refreshedQuotes.filter((quote) => quote.id !== id));
   };
 
   return (
@@ -59,7 +59,7 @@ const QuoteList = (props) => {
         </button>
       </div>
       <ul className={classes.list}>
-        {refreshQuotes.map((quote) => (
+        {refreshedQuotes.map((quote) => (
           <QuoteItem
             onRemove={() => {
               removeQuote(quote.id);

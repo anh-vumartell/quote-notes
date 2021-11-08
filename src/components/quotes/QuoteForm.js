@@ -3,7 +3,7 @@ import { Fragment, useState } from "react";
 import useInput from "../../hooks/use-input";
 import Card from "../../UI/Card";
 import LoadingSpinner from "../../UI/LoadingSpinner";
-import RouterPrompt from "../../UI/RouterPrompt";
+
 import classes from "./QuoteForm.module.css";
 
 const QuoteForm = (props) => {
@@ -73,14 +73,6 @@ const QuoteForm = (props) => {
 
   return (
     <Fragment>
-      <RouterPrompt
-        when={isEntering}
-        title="Leave this page"
-        cancelText="Cancel"
-        okText="Confirm"
-        onOk={() => true}
-        onCancel={() => false}
-      />
       <Card>
         <form
           onFocus={formFocusedHandler}

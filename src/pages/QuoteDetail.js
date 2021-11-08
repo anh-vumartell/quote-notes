@@ -6,6 +6,7 @@ import Comments from "../components/comments/Comments";
 import { useHttp } from "../hooks/use-http";
 import { fetchSingleQuote } from "../lib/api";
 import LoadingSpinner from "../UI/LoadingSpinner";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 function QuoteDetail(props) {
   const params = useParams();
@@ -48,9 +49,9 @@ function QuoteDetail(props) {
           <Link className="btn" to={`${match.url}/comments`}>
             Leave a comment
           </Link>
-          <button onClick={likeCountHandler} className="btn">
-            Like quote <span>{likeCount}</span>
-          </button>
+          <div onClick={likeCountHandler} className="btn">
+            <FavoriteIcon /> <span>{likeCount}</span>
+          </div>
         </div>
       </Route>
 

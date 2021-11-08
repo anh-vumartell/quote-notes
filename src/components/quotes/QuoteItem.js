@@ -1,6 +1,7 @@
 import classes from "./QuoteItem.module.css";
 import { Link } from "react-router-dom";
-
+import FullscreenIcon from "@mui/icons-material/Fullscreen";
+import DeleteIcon from "@mui/icons-material/Delete";
 // import { removeQuote } from "../../lib/api";
 const QuoteItem = (props) => {
   return (
@@ -12,12 +13,14 @@ const QuoteItem = (props) => {
         <figcaption>by {props.author}</figcaption>
       </figure>
       <div className={classes["col-right"]}>
-        <button onClick={props.onRemove} className={classes.remove}>
-          &#x2718;
-        </button>
-        <Link to={`/all-quotes/${props.id}`} className="btn">
-          View Fullscreen
-        </Link>
+        <div onClick={props.onRemove} className={classes.remove}>
+          <DeleteIcon sx={{ fontSize: 32 }} />
+        </div>
+        <div className={classes.fullscreen}>
+          <Link to={`/all-quotes/${props.id}`}>
+            <FullscreenIcon sx={{ fontSize: 32 }} />
+          </Link>
+        </div>
       </div>
     </li>
   );

@@ -10,11 +10,7 @@ import AddQuote from "./pages/AddQuote";
 
 function App() {
   return (
-    <Router
-      getUserConfirmation={() => {
-        /*an empty callback to block the default browser prompt */
-      }}
-    >
+    <Router>
       <Layout>
         <Switch>
           <Route path="/" exact>

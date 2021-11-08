@@ -16,6 +16,10 @@
 }
 .navlist__item {
   width: max-content;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 /* .navlist__item::after {
   content: "";
@@ -37,8 +41,9 @@
 }
 .navbar a:hover,
 .navbar a.active,
-.navbar a:active {
-  border-bottom: 5px solid var(--primary-font-color);
+.navbar a:active,
+.navlist__item:hover {
+  border-bottom: 3px solid var(--primary-font-color);
   color: var(--secondary-font-color);
 }
 

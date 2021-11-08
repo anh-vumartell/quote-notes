@@ -7,6 +7,7 @@
   box-shadow: 2px 7px 6px #201e1e7c;
   border-radius: 6px;
   background-color: #a1a7a7;
+  position: relative;
 }
 
 .item:last-of-type {
@@ -37,22 +38,34 @@
 }
 
 .col-right {
+  position: absolute;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
+  justify-content: space-between;
+  align-content: center;
+  width: 5rem;
+  bottom: -1rem;
+  right: 1.5rem;
 }
 .col-right .remove {
   margin-bottom: 1.6rem;
   height: 2rem;
   width: 2rem;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
-  background-color: var(--primary-color);
+
   font-size: 1.6rem;
-  border-radius: 50%;
   cursor: pointer;
 }
-.col-right .remove:hover {
-  background-color: var(--neutral-color);
+.col-right .fullscreen {
+  color: var(--primary-font-color);
+  height: 2rem;
+  width: auto;
+}
+
+.col-right a:active,
+.col-right a:visited,
+.col-right a {
+  color: var(--primary-font-color);
 }
