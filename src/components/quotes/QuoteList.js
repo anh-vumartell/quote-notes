@@ -1,11 +1,15 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
+import database from "../../lib/database";
+import { ref, set } from "firebase/database";
 import QuoteItem from "./QuoteItem";
 import classes from "./QuoteList.module.css";
 
 /* useHistory(): allow change page history, manage URL
 useLocation(): location object gives info of the current loaded page */
 //HELPER FUNCTION
+/*SIDE NOTE: If we click "Sort Ascending"-btn, the location object is logged over and over again. 
+It means that wehen we push the page (ending in "?sort=asc") the page rerenders */
 const sortQuotes = (quotes, ascending) => {
   return quotes.sort((quoteA, quoteB) => {
     if (ascending) {
@@ -19,23 +23,34 @@ const sortQuotes = (quotes, ascending) => {
 const QuoteList = (props) => {
   const history = useHistory();
   const location = useLocation();
-  console.log(location);
 
   //built-in constructor JS class which can be used in browser
   const queryParam = new URLSearchParams(location.search);
 
   const isSortingAscending = queryParam.get("sort") === "asc";
 
-  //sorted quotes
-  const sorted = sortQuotes(props.quotes, isSortingAscending);
+  const [refreshQuotes, setRefreshedQuotes] = useState(
+    sortQuotes(props.quotes, isSortingAscending)
+  );
+  // //sorted quotes
+  // const sorted = sortQuotes(props.quotes, isSortingAscending);
 
   //change sorting
   const changeSortingHandler = () => {
     //update the sharable URL
-    history.push("/all-quotes?sort=" + (isSortingAscending ? "desc" : "asc"));
+    history.push(
+      `${location.pathname}?sort=${isSortingAscending ? "desc" : "asc"}`
+    );
   };
-  /*SIDE NOTE: If we click "Sort Ascending"-btn, the location object is logged over and over again. 
-It means that wehen we push the page (ending in "?sort=asc") the page rerenders */
+
+  const removeQuote = (id) => {
+    // console.log(ref(database, `quotes/${props.id}`).key);
+    //use database reference to update
+    set(ref(database, `quotes/${id}`), null);
+    //update the UI
+    setRefreshedQuotes(refreshQuotes.filter((quote) => quote.id !== id));
+  };
+
   return (
     <Fragment>
       <div className={classes.sorting}>
@@ -44,8 +59,11 @@ It means that wehen we push the page (ending in "?sort=asc") the page rerenders 
         </button>
       </div>
       <ul className={classes.list}>
-        {sorted.map((quote) => (
+        {refreshQuotes.map((quote) => (
           <QuoteItem
+            onRemove={() => {
+              removeQuote(quote.id);
+            }}
             key={quote.id}
             id={quote.id}
             author={quote.author}

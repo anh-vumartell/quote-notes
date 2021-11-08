@@ -7,20 +7,12 @@ function Header() {
       <nav className={classes.navbar}>
         <ul className={classes.navlist}>
           <li className={classes.navlist__item}>
-            <NavLink
-              className={classes.navlink}
-              activeClassName="active"
-              to="/all-quotes"
-            >
+            <NavLink activeClassName="active" to="/all-quotes">
               All Quotes
             </NavLink>
           </li>
           <li className={classes.navlist__item}>
-            <NavLink
-              className={classes.navlink}
-              activeClassName="active"
-              to="/add-a-quote"
-            >
+            <NavLink activeClassName="active" to="/add-a-quote">
               Add a Quote
             </NavLink>
           </li>

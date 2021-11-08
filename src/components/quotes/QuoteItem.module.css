@@ -35,3 +35,24 @@
   font-style: italic;
   color: #3a4242;
 }
+
+.col-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.col-right .remove {
+  margin-bottom: 1.6rem;
+  height: 2rem;
+  width: 2rem;
+  text-align: center;
+  border: none;
+  background-color: var(--primary-color);
+  font-size: 1.6rem;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.col-right .remove:hover {
+  background-color: var(--neutral-color);
+}

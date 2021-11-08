@@ -27,7 +27,7 @@
   top: 0.4rem;
 } */
 
-.navlink {
+.navbar a {
   color: var(--primary-font-color);
   font-weight: 600;
   text-decoration: none;
@@ -35,13 +35,14 @@
   cursor: pointer;
   transition: border-bottom 0.15s ease-in;
 }
-.navlink:hover,
-.navlink.active {
+.navbar a:hover,
+.navbar a.active,
+.navbar a:active {
   border-bottom: 5px solid var(--primary-font-color);
+  color: var(--secondary-font-color);
 }
 
-.navlink:visited,
-.navlink:active {
+.navbar a:visited {
   color: var(--primary-font-color);
   text-decoration: none;
 }

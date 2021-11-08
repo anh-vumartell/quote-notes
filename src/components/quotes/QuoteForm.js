@@ -1,13 +1,12 @@
 import { Fragment, useState } from "react";
-import { useHistory } from "react-router-dom";
-import useInput from "../hooks/use-input";
-import Card from "../UI/Card";
-import LoadingSpinner from "../UI/LoadingSpinner";
-import RouterPrompt from "../UI/RouterPrompt";
+
+import useInput from "../../hooks/use-input";
+import Card from "../../UI/Card";
+import LoadingSpinner from "../../UI/LoadingSpinner";
+import RouterPrompt from "../../UI/RouterPrompt";
 import classes from "./QuoteForm.module.css";
 
 const QuoteForm = (props) => {
-  const history = useHistory();
   // const authorInputRef = useRef();
   // const textInputRef = useRef();
   const [isEntering, setIsEntering] = useState(false);
@@ -36,26 +35,7 @@ const QuoteForm = (props) => {
   if (authorNameIsValid && textIsValid) {
     formIsValid = true;
   }
-  //Function to send quote data to database
-  const sendQuoteHandler = async (quoteData) => {
-    try {
-      const response = await fetch(
-        "https://quote-notes-default-rtdb.europe-west1.firebasedatabase.app/quotes.json",
-        {
-          method: "POST",
-          body: JSON.stringify(quoteData),
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Something went wrong!");
-      }
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+
   //Form submission handler
   const submitFormHandler = (event) => {
     event.preventDefault();
@@ -75,15 +55,10 @@ const QuoteForm = (props) => {
     const quoteData = {
       author: enteredAuthor,
       text: enteredText,
-      id: Math.floor(Math.random() * 100 + 1),
     };
-    props.onAddQuote(quoteData);
-    /*hisotry.push("name-of-path-to-return") so we can come back
-    history.replace("name-of-path") is like a redirect, not coming back*/
-    history.push("/all-quotes");
 
     //sending new quote to database
-    sendQuoteHandler(quoteData);
+    props.onAddQuote(quoteData);
   };
   /*this function is created outside the form submission function
   since the submitFormHandler also triggered navigation so the setIsEntering cannot be done (it's
