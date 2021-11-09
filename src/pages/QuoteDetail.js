@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams, Route, Link, useRouteMatch } from "react-router-dom";
 import HighlightedQuote from "../components/quotes/HighlightedQuote";
 
@@ -14,7 +14,6 @@ function QuoteDetail(props) {
   const { quoteId } = params;
 
   const match = useRouteMatch();
-  const [likeCount, setLikeCount] = useState(0);
 
   const {
     requestHandler,
@@ -33,9 +32,7 @@ function QuoteDetail(props) {
   if (error) {
     return <p>{error}</p>;
   }
-  const likeCountHandler = () => {
-    setLikeCount((prevCount) => prevCount + 1);
-  };
+
   return (
     <div>
       {status === "pending" ? (
@@ -49,8 +46,8 @@ function QuoteDetail(props) {
           <Link className="btn" to={`${match.url}/comments`}>
             Leave a comment
           </Link>
-          <div onClick={likeCountHandler} className="btn">
-            <FavoriteIcon /> <span>{likeCount}</span>
+          <div className="btn">
+            <FavoriteIcon /> Add Favorite
           </div>
         </div>
       </Route>

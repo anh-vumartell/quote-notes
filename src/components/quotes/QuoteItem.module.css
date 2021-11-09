@@ -43,10 +43,10 @@
   justify-content: space-between;
   align-content: center;
   width: 5rem;
-  bottom: -1rem;
+  bottom: 1rem;
   right: 1.5rem;
 }
-.col-right .remove {
+/* .col-right .remove {
   margin-bottom: 1.6rem;
   height: 2rem;
   width: 2rem;
@@ -57,13 +57,20 @@
 
   font-size: 1.6rem;
   cursor: pointer;
-}
-.col-right .fullscreen {
+} */
+.fullscreen,
+.remove {
   color: var(--primary-font-color);
-  height: 2rem;
-  width: auto;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
+.fullscreen:hover,
+.remove:hover {
+  background-color: var(--shadow);
+  border-radius: 50%;
+}
 .col-right a:active,
 .col-right a:visited,
 .col-right a {
