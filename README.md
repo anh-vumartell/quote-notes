@@ -12,5 +12,6 @@ This project is created with a purpose to practise the concept of React Router
 # Technologies
 - React Router v5
 - Firebase realtime database
+- Firebse Authentication
 - MaterialUI
 - Material Icons
