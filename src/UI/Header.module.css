@@ -4,10 +4,21 @@
   justify-content: space-around;
   align-items: center;
   background-color: var(--primary-color);
+  min-height: 5rem;
+}
+.logo {
+  font-family: inherit;
+  font-size: 2rem;
+  color: var(--primary-font-color);
+  font-weight: 600;
+}
+
+.header a {
+  text-decoration: none;
 }
 
 .navbar {
-  width: 50vw;
+  width: 40rem;
 }
 .navlist {
   display: flex;
@@ -50,4 +61,20 @@
 .navbar a:visited {
   color: var(--primary-font-color);
   text-decoration: none;
+}
+
+.navbar button {
+  font: inherit;
+  background-color: transparent;
+  border: 1px solid var(--primary-font-color);
+  color: var(--primary-font-color);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.4s linear ease-in;
+}
+.navbar button:hover {
+  background-color: var(--primary-font-color);
+  color: var(--primary-color);
 }

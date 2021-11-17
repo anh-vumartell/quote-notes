@@ -1,22 +1,25 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import classes from "./Header.module.css";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 function Header() {
   return (
     <header className={classes.header}>
-      <h1>Quote Notes</h1>
+      <Link to="/home">
+        <div className={classes.logo}>Quote Notes</div>
+      </Link>
       <nav className={classes.navbar}>
         <ul className={classes.navlist}>
           <li className={classes.navlist__item}>
-            <NavLink activeClassName="active" to="/all-quotes">
+            <Link activeClassName="active" to="/all-quotes">
               All Quotes
-            </NavLink>
+            </Link>
           </li>
           <li className={classes.navlist__item}>
-            <NavLink activeClassName="active" to="/add-a-quote">
+            <Link activeClassName="active" to="/add-a-quote">
               Add a Quote
-            </NavLink>
+            </Link>
           </li>
+
           <li className={classes.navlist__item}>
             Favorites
             <span>
