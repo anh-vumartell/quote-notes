@@ -1,7 +1,12 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import classes from "./Header.module.css";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
+import { FavContext } from "../context/favorite-context";
+
+// import BookmarkIcon from "@mui/icons-material/Bookmark";
 function Header() {
+  const favCtx = useContext(FavContext);
+
   return (
     <header className={classes.header}>
       <Link to="/home">
@@ -20,12 +25,10 @@ function Header() {
             </Link>
           </li>
 
-          <li className={classes.navlist__item}>
+          <Link to="/favorites" className={classes.navlist__item}>
             Favorites
-            <span>
-              <BookmarkIcon sx={{ fontSize: 18 }} />
-            </span>
-          </li>
+            <span className={classes.badge}>{favCtx.favCount}</span>
+          </Link>
         </ul>
       </nav>
     </header>

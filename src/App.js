@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import Layout from "./components/layout/Layout";
+import Favorites from "./pages/Favorites";
 import LoadingSpinner from "./UI/LoadingSpinner";
 const HomePage = React.lazy(() => import("./pages/HomePage"));
 const AddQuote = React.lazy(() => import("./pages/AddQuote")); //downloaded when needed
@@ -37,7 +38,9 @@ function App() {
               <h1>Add your own quotes</h1>
               <AddQuote />
             </Route>
-
+            <Route path="/favorites">
+              <Favorites />
+            </Route>
             <Route path="*">
               <NotFound />
             </Route>

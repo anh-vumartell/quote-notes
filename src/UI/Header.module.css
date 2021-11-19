@@ -78,3 +78,10 @@
   background-color: var(--primary-font-color);
   color: var(--primary-color);
 }
+
+.navbar .badge {
+  border: 2px solid var(--primary-font-color);
+  padding: 0.5rem 0.75rem;
+  margin: 0 0.5rem;
+  border-radius: 50%;
+}

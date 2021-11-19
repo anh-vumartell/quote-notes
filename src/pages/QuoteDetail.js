@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { useParams, Route, Link, useRouteMatch } from "react-router-dom";
 import HighlightedQuote from "../components/quotes/HighlightedQuote";
-
+import { FavContext } from "../context/favorite-context";
 import Comments from "../components/comments/Comments";
 import { useHttp } from "../hooks/use-http";
 import { fetchSingleQuote } from "../lib/api";
@@ -9,6 +9,13 @@ import LoadingSpinner from "../UI/LoadingSpinner";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
 function QuoteDetail(props) {
+  const favCtx = useContext(FavContext);
+
+  const addFavHandler = () => {
+    favCtx.setFavList(() => [...favCtx.favorites, loadedQuote]);
+    favCtx.setFavCount((prevCount) => prevCount + 1);
+  };
+  console.log(favCtx.favorites);
   const params = useParams();
 
   const { quoteId } = params;
@@ -46,9 +53,9 @@ function QuoteDetail(props) {
           <Link className="btn" to={`${match.url}/comments`}>
             Leave a comment
           </Link>
-          <div className="btn">
+          <button onClick={addFavHandler} className="btn">
             <FavoriteIcon /> Add Favorite
-          </div>
+          </button>
         </div>
       </Route>
 

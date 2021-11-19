@@ -1,0 +1,2 @@
+(this["webpackJsonpreact-complete-guide"]=this["webpackJsonpreact-complete-guide"]||[]).push([[7],{94:function(e,t,c){"use strict";c.r(t);c(0);var i=c(2);t.default=function(e){return Object(i.jsx)("div",{children:Object(i.jsx)("h1",{children:"Welcome to Quote Notes!"})})}}}]);
+//# sourceMappingURL=7.cfc0e3c0.chunk.js.map
