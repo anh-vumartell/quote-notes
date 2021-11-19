@@ -48,20 +48,19 @@
   text-decoration: none;
   padding: 0.2rem;
   cursor: pointer;
-  transition: border-bottom 0.15s ease-in;
+  /* transition: border-bottom 0.15s ease-in; */
 }
 .navbar a:hover,
 .navbar a.active,
-.navbar a:active,
-.navlist__item:hover {
-  border-bottom: 3px solid var(--primary-font-color);
+.navbar a:active {
+  /* border-bottom: 3px solid var(--primary-font-color); */
   color: var(--secondary-font-color);
 }
 
-.navbar a:visited {
+/* .navbar a:visited {
   color: var(--primary-font-color);
   text-decoration: none;
-}
+} */
 
 .navbar button {
   font: inherit;
@@ -84,4 +83,5 @@
   padding: 0.5rem 0.75rem;
   margin: 0 0.5rem;
   border-radius: 50%;
+  color: var(--primary-font-color);
 }

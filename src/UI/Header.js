@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import classes from "./Header.module.css";
 import { FavContext } from "../context/favorite-context";
 
@@ -15,20 +15,20 @@ function Header() {
       <nav className={classes.navbar}>
         <ul className={classes.navlist}>
           <li className={classes.navlist__item}>
-            <Link activeClassName="active" to="/all-quotes">
+            <NavLink activeClassName={classes.active} to="/all-quotes">
               All Quotes
-            </Link>
+            </NavLink>
           </li>
           <li className={classes.navlist__item}>
-            <Link activeClassName="active" to="/add-a-quote">
+            <NavLink activeClassName={classes.active} to="/add-a-quote">
               Add a Quote
-            </Link>
+            </NavLink>
           </li>
 
-          <Link to="/favorites" className={classes.navlist__item}>
+          <NavLink to="/favorites" activeClassName={classes.active}>
             Favorites
             <span className={classes.badge}>{favCtx.favCount}</span>
-          </Link>
+          </NavLink>
         </ul>
       </nav>
     </header>
