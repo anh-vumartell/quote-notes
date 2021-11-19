@@ -72,6 +72,18 @@ body {
   color: var(--primary-font-color);
 }
 
+.btn--minimal {
+  font: inherit;
+  color: var(--primary-font-color);
+  border: 2px solid var(--primary-color);
+  background-color: transparent;
+  border-radius: 4px;
+  padding: 0.5rem 3rem;
+  cursor: pointer;
+}
+.btn--minimal:hover {
+  background-color: var(--primary-color);
+}
 .error-text {
   color: red;
 }

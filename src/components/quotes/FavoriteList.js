@@ -1,8 +1,14 @@
 import React from "react";
 import QuoteItem from "./QuoteItem";
 const FavoriteList = (props) => {
-  return props.favorites.map((fav) => (
-    <QuoteItem text={fav.text} author={fav.author} />
-  ));
+  let content;
+  if (props.favorites.length === 0) {
+    content = <p>No favorite quotes yet! Maybe adding one?</p>;
+  } else {
+    content = props.favorites.map((fav) => (
+      <QuoteItem key={fav.id} text={fav.text} author={fav.author} />
+    ));
+  }
+  return content;
 };
 export default FavoriteList;

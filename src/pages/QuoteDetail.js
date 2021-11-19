@@ -10,12 +10,15 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 
 function QuoteDetail(props) {
   const favCtx = useContext(FavContext);
-
+  const favList = favCtx.favorites;
   const addFavHandler = () => {
-    favCtx.setFavList(() => [...favCtx.favorites, loadedQuote]);
+    // favCtx.setFavList(() => [...favCtx.favorites, loadedQuote]);
+    favList.push(loadedQuote);
+    console.log(favList);
     favCtx.setFavCount((prevCount) => prevCount + 1);
+    localStorage.setItem("favQuotes", JSON.stringify(favList));
   };
-  console.log(favCtx.favorites);
+
   const params = useParams();
 
   const { quoteId } = params;
@@ -25,20 +28,13 @@ function QuoteDetail(props) {
   const {
     requestHandler,
     status,
+
     data: loadedQuote,
-    error,
   } = useHttp(fetchSingleQuote, true);
+
   useEffect(() => {
     requestHandler(quoteId);
   }, [requestHandler, quoteId]);
-  // console.log(match);
-  // console.log(params);
-
-  // console.log(quote);
-
-  if (error) {
-    return <p>{error}</p>;
-  }
 
   return (
     <div>

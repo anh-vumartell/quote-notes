@@ -8,7 +8,7 @@ const FIREBASE_DOMAIN =
 export const fetchQuotesHandler = async () => {
   const response = await fetch(`${FIREBASE_DOMAIN}/quotes.json`);
   const quotesData = await response.json();
-  console.log(quotesData);
+
   if (!response.ok) {
     throw new Error(quotesData.message || "Something went wrong!");
   }
@@ -21,7 +21,6 @@ export const fetchQuotesHandler = async () => {
     };
 
     transformedData.push(quoteObj);
-    console.log(transformedData);
   }
   return transformedData;
 };

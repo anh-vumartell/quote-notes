@@ -6,7 +6,12 @@ import { FavContext } from "../context/favorite-context";
 // import BookmarkIcon from "@mui/icons-material/Bookmark";
 function Header() {
   const favCtx = useContext(FavContext);
-
+  let badgeCount;
+  if (localStorage.getItem("favQuotes") !== null) {
+    badgeCount = JSON.parse(localStorage.getItem("favQuotes")).length;
+  } else {
+    badgeCount = favCtx.favCount;
+  }
   return (
     <header className={classes.header}>
       <Link to="/home">
@@ -27,7 +32,7 @@ function Header() {
 
           <NavLink to="/favorites" activeClassName={classes.active}>
             Favorites
-            <span className={classes.badge}>{favCtx.favCount}</span>
+            <span className={classes.badge}>{badgeCount}</span>
           </NavLink>
         </ul>
       </nav>
