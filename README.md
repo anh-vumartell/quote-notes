@@ -14,3 +14,6 @@ This project is created with a purpose to practise the concept of React Router
 - Firebase realtime database
 - MaterialUI
 - Material Icons
+
+# User Flow Chart
+[Whimsical char](https://whimsical.com/quote-notes-user-flow-W9LbSrJDURdVdGUyUZW2V2)
