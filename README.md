@@ -7,9 +7,10 @@ This project is created with a purpose to practise the concept of React Router
 - User can view a single quote in fullscreen view.
 - User can leave comments
 - User can delete quotes
+- User can sort quotes
 - User can mark his/her favorite quotes
 - User can view/clear his/her list of favorite quotes
--
+- User can view list of favorites after the browser is closed
 ## Todos
 - Display authenticated user's data
 
@@ -18,6 +19,7 @@ This project is created with a purpose to practise the concept of React Router
 - Firebase realtime database
 - MaterialUI
 - Material Icons
+- Browser's Local Storage
 
 # User Flow Chart
 [Whimsical chart](https://whimsical.com/quote-notes-user-flow-W9LbSrJDURdVdGUyUZW2V2)
