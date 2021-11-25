@@ -10,7 +10,10 @@ const QuoteItem = (props) => {
         <blockquote>
           <p>"{props.text}"</p>
         </blockquote>
-        <figcaption>by {props.author}</figcaption>
+        <div className={classes["col-left"]}>
+          <figcaption>by {props.author}</figcaption>
+          <figcaption>created at {props.createdAt}</figcaption>
+        </div>
       </figure>
       <div className={classes["col-right"]}>
         <div onClick={props.onRemove} className={classes.remove}>

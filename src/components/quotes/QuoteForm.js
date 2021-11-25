@@ -55,6 +55,7 @@ const QuoteForm = (props) => {
     const quoteData = {
       author: enteredAuthor,
       text: enteredText,
+      createdAt: new Date().toDateString(),
     };
 
     //sending new quote to database

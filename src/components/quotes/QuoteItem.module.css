@@ -76,3 +76,10 @@
 .col-right a {
   color: var(--primary-font-color);
 }
+
+.col-left {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}

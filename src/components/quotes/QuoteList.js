@@ -1,10 +1,12 @@
 import { Fragment, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import database from "../../lib/database";
+import { getDatabase } from "firebase/database";
+import app from "../../lib/firebase";
 import { ref, set } from "firebase/database";
 import QuoteItem from "./QuoteItem";
 import classes from "./QuoteList.module.css";
 
+const db = getDatabase();
 /* useHistory(): allow change page history, manage URL
 useLocation(): location object gives info of the current loaded page */
 //HELPER FUNCTION
@@ -46,7 +48,7 @@ const QuoteList = (props) => {
   const removeQuote = (id) => {
     // console.log(ref(database, `quotes/${props.id}`).key);
     //use database reference to update
-    set(ref(database, `quotes/${id}`), null);
+    set(ref(db, `quotes/${id}`), null);
     //update the UI
     setRefreshedQuotes(refreshedQuotes.filter((quote) => quote.id !== id));
   };
@@ -68,6 +70,7 @@ const QuoteList = (props) => {
             id={quote.id}
             author={quote.author}
             text={quote.text}
+            createdAt={quote.createdAt}
           />
         ))}
       </ul>

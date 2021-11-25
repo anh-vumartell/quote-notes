@@ -1,22 +1,30 @@
-// Import functions from Firebases SDK
-import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
+import { getDatabase, ref, set, update, push, child } from "@firebase/database";
+import { getAuth } from "firebase/auth";
+//Add users node to database
+export async function writeUserData(displayName, userId, email) {
+  const db = getDatabase();
+  const newUserRef = await set(ref(db, "users/" + userId), {
+    username: displayName,
+    email: email,
+    id: userId,
+    quotes: [],
+  });
+  return newUserRef;
+}
 
-//My app's Firebase configuration detail
-const firebaseConfig = {
-  apiKey: "AIzaSyAVz31nXxptJDQCXFhrYkZ-HTEC-tZb5FY",
-  authDomain: "quote-notes.firebaseapp.com",
-  databaseURL:
-    "https://quote-notes-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "quote-notes",
-  storageBucket: "quote-notes.appspot.com",
-  messagingSenderId: "586707582442",
-  appId: "1:586707582442:web:43d93b65117e71758a8693",
-};
+//Update user's quotes
+export function addNewQuote(quoteData) {
+  const db = getDatabase();
+  const auth = getAuth();
 
-//Initialize Firebase database
-const app = initializeApp(firebaseConfig);
+  //Get a key for a new quote
+  const newQuoteKey = push(child(ref(db), "quotes")).key;
+  console.log(newQuoteKey);
+  //Write the new quote's data simultaneously in the quotes-node and the user-quotes-node
+  const updates = {};
+  updates["quotes/" + newQuoteKey] = quoteData;
+  updates["user-quotes/" + auth.currentUser.uid + "/" + newQuoteKey] =
+    quoteData;
 
-const database = getDatabase(app);
-console.log(database);
-export default database;
+  return update(ref(db), updates);
+}

@@ -1,1 +1,0 @@
-{"version":3,"sources":["pages/HomePage.js"],"names":["HomePage","props"],"mappings":"mIAAA,uBAUeA,UARf,SAAkBC,GAChB,OACE,8BACE","file":"static/js/7.cfc0e3c0.chunk.js","sourcesContent":["import React from \"react\";\n\nfunction HomePage(props) {\n  return (\n    <div>\n      <h1>Welcome to Quote Notes!</h1>\n    </div>\n  );\n}\n\nexport default HomePage;\n"],"sourceRoot":""}
