@@ -5,7 +5,7 @@ import Layout from "./components/layout/Layout";
 import Favorites from "./pages/Favorites";
 import LoadingSpinner from "./UI/LoadingSpinner";
 import AuthPage from "./pages/AuthPage";
-import { useAuth } from "./context/auth-context-new";
+import { useAuth } from "./context/auth-context";
 
 const HomePage = React.lazy(() => import("./pages/HomePage"));
 const AddQuote = React.lazy(() => import("./pages/AddQuote")); //downloaded when needed
@@ -15,6 +15,7 @@ const AllQuotes = React.lazy(() => import("./pages/AllQuotes"));
 
 function App() {
   const { isLoggedIn } = useAuth();
+
   return (
     <Router>
       <Layout>

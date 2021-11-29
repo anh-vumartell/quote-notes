@@ -1,11 +1,11 @@
-import { useState, useRef, useContext } from "react";
-import { AuthContext } from "../../context/auth-context";
+import { useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import classes from "./AuthForm.module.css";
+import { useAuth } from "../../context/auth-context";
 
 const AuthForm = () => {
   //Step 4: Accessing context with useContext hook
-  const authCtx = useContext(AuthContext);
+  const { login } = useAuth();
 
   let history = useHistory();
   const [isLoading, setIsLoading] = useState(false);
@@ -27,10 +27,10 @@ const AuthForm = () => {
     let url;
     if (isLogin) {
       url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAHadaw-IJ6ggXeK55jwVqAT9R8HoTBpC8";
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAVz31nXxptJDQCXFhrYkZ-HTEC-tZb5FY";
     } else {
       url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAHadaw-IJ6ggXeK55jwVqAT9R8HoTBpC8";
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAVz31nXxptJDQCXFhrYkZ-HTEC-tZb5FY";
     }
 
     //send signup request
@@ -62,7 +62,8 @@ const AuthForm = () => {
         }
       })
       .then((data) => {
-        authCtx.login(data.idToken, Date.now() + +data.expiresIn * 1000);
+        console.log(data);
+        login(data.idToken, Date.now() + +data.expiresIn * 1000, data.email);
         history.push("/");
       })
       .catch((err) => {

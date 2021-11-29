@@ -2,10 +2,10 @@ import { useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
 import classes from "./Header.module.css";
 import { FavContext } from "../context/favorite-context";
-import { useAuth } from "../context/auth-context-new";
+import { useAuth } from "../context/auth-context";
 // import BookmarkIcon from "@mui/icons-material/Bookmark";
 function Header() {
-  const { isLoggedIn, signout } = useAuth();
+  const { isLoggedIn, logout, currentEmail } = useAuth();
 
   const favCtx = useContext(FavContext);
   let badgeCount;
@@ -16,9 +16,9 @@ function Header() {
   }
 
   //Logout
-  // const logoutHandler = () => {
-  //   authCtx.logout();
-  // };
+  const logoutHandler = () => {
+    logout();
+  };
   return (
     <header className={classes.header}>
       <Link to="/home">
@@ -52,7 +52,9 @@ function Header() {
 
           {isLoggedIn && (
             <li className={classes.navlist__item}>
-              <button onClick={() => signout()}>Logout</button>
+              <button onClick={() => logoutHandler()}>
+                Logout, {currentEmail}
+              </button>
             </li>
           )}
         </ul>

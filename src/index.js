@@ -1,17 +1,18 @@
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { FavProvider } from "../src/context/favorite-context";
-import { AuthProvider } from "./context/auth-context-new";
+import { AuthContextProvider } from "../src/context/auth-context";
 import "./index.css";
+import { app } from "../src/lib/firebase";
 import App from "./App";
 
 ReactDOM.render(
-  <AuthProvider>
+  <AuthContextProvider>
     <FavProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
     </FavProvider>
-  </AuthProvider>,
+  </AuthContextProvider>,
   document.getElementById("root")
 );

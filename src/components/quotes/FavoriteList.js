@@ -6,7 +6,12 @@ const FavoriteList = (props) => {
     content = <p>No favorite quotes yet! Maybe adding one?</p>;
   } else {
     content = props.favorites.map((fav) => (
-      <QuoteItem key={fav.id} text={fav.text} author={fav.author} />
+      <QuoteItem
+        key={fav.id}
+        text={fav.text}
+        author={fav.author}
+        createdAt={fav.createdAt}
+      />
     ));
   }
   return content;

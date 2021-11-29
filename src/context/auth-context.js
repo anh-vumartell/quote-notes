@@ -1,8 +1,17 @@
-import { createContext, useState, useCallback, useEffect } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useEffect,
+} from "react";
 
 //Global variables
 let logoutTimer;
 
+export function useAuth() {
+  return useContext(AuthContext);
+}
 //Helper functions
 // const calculateRemainingTime = (expirationTime) => {
 //   const currentTime = new Date().getTime();
@@ -44,13 +53,15 @@ export const AuthContextProvider = (props) => {
 
   //Create local state being share accross the app
   const [token, setToken] = useState(null);
+  const [currentEmail, setCurrentEmail] = useState();
 
   // const userIsLoggedIn = !!token; //!! change a truthy or falsy value to a boolean value
   /*token is a string which has value (truthy)
   token is an empty string (falsy) */
   const userIsLoggedIn = Boolean(token);
 
-  const loginHandler = (token, deadLine) => {
+  const loginHandler = (token, deadLine, email) => {
+    setCurrentEmail(email);
     setToken(token);
     console.log(token);
     localStorage.setItem("token", token);
@@ -84,6 +95,7 @@ export const AuthContextProvider = (props) => {
     isLoggedIn: userIsLoggedIn,
     login: loginHandler,
     logout: logoutHandler,
+    currentEmail: currentEmail,
   };
 
   /*Set "authValue" as the value for "value" attribute */

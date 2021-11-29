@@ -4,7 +4,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "@firebase/auth";
-import app from "../lib/firebase.js";
+// import app from "../lib/firebase.js";
 import { writeUserData } from "../lib/database.js";
 const AuthContext = React.createContext();
 const auth = getAuth();
@@ -32,6 +32,7 @@ export function AuthProvider({ children }) {
         };
         writeUserData(newUser.displayName, newUser.userId, newUser.email);
         setIsLoading(false);
+        return newUser;
       })
       .catch((error) => {
         setError(error.message);

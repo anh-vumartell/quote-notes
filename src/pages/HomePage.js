@@ -1,15 +1,19 @@
 import React from "react";
-import { useAuth } from "../context/auth-context-new";
+import { useAuth } from "../context/auth-context";
 import LoadingSpinner from "../UI/LoadingSpinner";
+
 function HomePage(props) {
-  const { currentUser, isLoggedIn, isLoading } = useAuth();
-  console.log(currentUser);
+  const { isLoading, currentEmail, isLoggedIn } = useAuth();
+
   return (
     <div>
       {isLoading && <LoadingSpinner />}
-      <h1>{`Welcome ${
-        currentUser && isLoggedIn ? currentUser.email : " "
-      } to Quote Notes`}</h1>
+      {currentEmail && isLoggedIn && (
+        <h1>
+          Hello <u>{currentEmail}</u>! Welcome to Quote Notes!
+        </h1>
+      )}
+      {!isLoggedIn && <h1>Welcome to Quote Notes!</h1>}
     </div>
   );
 }

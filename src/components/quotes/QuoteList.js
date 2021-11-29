@@ -1,12 +1,11 @@
 import { Fragment, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import { getDatabase } from "firebase/database";
-import app from "../../lib/firebase";
+import database from "../../lib/firebase";
+// import app from "../../lib/firebase";
 import { ref, set } from "firebase/database";
 import QuoteItem from "./QuoteItem";
 import classes from "./QuoteList.module.css";
 
-const db = getDatabase();
 /* useHistory(): allow change page history, manage URL
 useLocation(): location object gives info of the current loaded page */
 //HELPER FUNCTION
@@ -34,10 +33,9 @@ const QuoteList = (props) => {
   const [refreshedQuotes, setRefreshedQuotes] = useState(
     sortQuotes(props.quotes, isSortingAscending)
   );
-  // //sorted quotes
+  //sorted quotes
   // const sorted = sortQuotes(props.quotes, isSortingAscending);
 
-  //change sorting
   const changeSortingHandler = () => {
     //update the sharable URL
     history.push(
@@ -48,7 +46,7 @@ const QuoteList = (props) => {
   const removeQuote = (id) => {
     // console.log(ref(database, `quotes/${props.id}`).key);
     //use database reference to update
-    set(ref(db, `quotes/${id}`), null);
+    set(ref(database, `quotes/${id}`), null);
     //update the UI
     setRefreshedQuotes(refreshedQuotes.filter((quote) => quote.id !== id));
   };

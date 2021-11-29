@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import classes from "./AuthForm.module.css";
 import { useAuth } from "../../context/auth-context-new";
 import { useHistory } from "react-router-dom";
-import app from "../../lib/firebase.js";
+// import app from "../../lib/firebase.js";
 function AuthFormNew(props) {
   const [isLogin, setIsLogin] = useState(true);
   const history = useHistory();

@@ -2,9 +2,8 @@ import { React, useEffect } from "react";
 import NoQuotesFound from "../components/quotes/NoQuotesFound";
 import QuoteList from "../components/quotes/QuoteList";
 import { useHttp } from "../hooks/use-http";
-import { fetchQuotesHandler } from "../lib/api.js";
 import LoadingSpinner from "../UI/LoadingSpinner";
-
+import { fetchQuotesHandler } from "../lib/api";
 /*IN THIS PAGE, WE IMPLEMENT FETCHING REQUEST & 
 RENDERED FETCHED DATA TO QUOTELIST COMPONENT*/
 
@@ -41,11 +40,16 @@ function AllQuotes(props) {
   ) {
     return <NoQuotesFound />;
   }
-  return (
-    <div>
-      <QuoteList quotes={receivedQuotes} />
-    </div>
-  );
+  // const fetchQuotesHandler = useCallback(() => {
+  //   const arr = fetchAllQuotes();
+  //   setQuotes(arr);
+  // });
+
+  // useEffect(() => {
+  //   fetchQuotesHandler();
+  // }, []);
+
+  return <QuoteList quotes={receivedQuotes} />;
 }
 
 export default AllQuotes;

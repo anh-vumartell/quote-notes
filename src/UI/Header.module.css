@@ -17,21 +17,18 @@
   text-decoration: none;
 }
 
-.navbar {
-  width: 40rem;
-}
 .navlist {
   display: flex;
   justify-content: space-evenly;
   list-style-type: none;
 }
 .navlist__item {
-  width: max-content;
   font-weight: 600;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  margin: 0 1rem;
 }
 /* .navlist__item::after {
   content: "";
