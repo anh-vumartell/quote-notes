@@ -1,0 +1,2 @@
+(this["webpackJsonpreact-complete-guide"]=this["webpackJsonpreact-complete-guide"]||[]).push([[6],{98:function(e,t,c){"use strict";c.r(t);c(1);var s=c(22),o=c(44),i=c(2);t.default=function(e){var t=Object(s.b)(),c=t.isLoading,n=t.currentEmail,r=t.isLoggedIn;return Object(i.jsxs)("div",{children:[c&&Object(i.jsx)(o.a,{}),n&&r&&Object(i.jsxs)("h1",{children:["Hello ",Object(i.jsx)("u",{children:n}),"! Welcome to Quote Notes!"]}),!r&&Object(i.jsx)("h1",{children:"Welcome to Quote Notes!"})]})}}}]);
+//# sourceMappingURL=6.a747ff53.chunk.js.map
