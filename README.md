@@ -2,7 +2,7 @@
 A small React app to write down your own quotes.
 This project is created with a purpose to practise the concept of React Router
 ## Demo
-[Quote Notes](https://quote-notes.web.app/home)
+[Quote Notes](https://quote-notes.web.app/add-a-quote)
 
 # Main features
 - User can navigate to different pages: one page show all added quotes, one page to add new quote.
